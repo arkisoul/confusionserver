@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.use(bodyParser.json());
 
-.router.options('*', corsWithOptions, (req, res) => { res.sendStatus(200);});
+router.options('*', cors.corsWithOptions, (req, res) => { res.sendStatus(200);});
 
 /* GET users listing. */
 router.get('/', cors.corsWithOptions, authenticate.verifyUser, authenticate.verfiyAdmin, (req, res, next) => {
@@ -69,7 +69,7 @@ router.post('/login', cors.corsWithOptions, (req, res, next) => {
             res.json({success: false, status: 'Login Unsuccessful!', err: info});
         }
 
-        req.logIn((user, err) => {
+        req.logIn(user, (err) => {
             if (err) {
                 res.statusCode = 401
                 res.setHeader('Content-Type', 'application/json');

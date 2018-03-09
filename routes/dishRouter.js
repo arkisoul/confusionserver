@@ -51,6 +51,9 @@ dishRouter.route('/')
 
 // REST API end Point /dishes/:dishId
 dishRouter.route('/:dishId')
+.options(cors.corsWithOptions, (req, res) => {
+    res.sendStatus(200);
+})
 .get(cors.cors, (req, res, next) => {
     Dishes.findById(req.params.dishId)
     .populate('comments.author')
@@ -88,6 +91,9 @@ dishRouter.route('/:dishId')
 
 // REST API end Point /dishes/:dishId/comments
 dishRouter.route('/:dishId/comments')
+.options(cors.corsWithOptions, (req, res) => {
+    res.sendStatus(200);
+})
 .get(cors.cors, (req, res, next) => {
     Dishes.findById(req.params.dishId)
     .populate('comments.author')
@@ -156,6 +162,9 @@ dishRouter.route('/:dishId/comments')
 
 // REST API end Point /dishes/:dishId/comments/:commentId
 dishRouter.route('/:dishId/comments/:commentId')
+.options(cors.corsWithOptions, (req, res) => {
+    res.sendStatus(200);
+})
 .get(cors.cors, (req, res, next) => {
     Dishes.findById(req.params.dishId)
     .populate('comments.author')
